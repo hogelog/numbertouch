@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="<%= width %>" height="<%= height %>" style="background:#fff"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <% numbers.each do |n| %>
+    <% if debug %><rect x="<%= n.x %>" y="<%= n.y %>" width="<%= n.width %>" height="<%= n.height %>" fill="none" stroke="gray"/><% end %>
+    <circle cx="<%= n.cx %>" cy="<%= n.cy %>" r="<%= n.r %>" fill="none" stroke="black" stroke-width="2"/>
+    <text x="<%= n.cx %>" y="<%= n.cy %>" font-size="<%= n.font %>" text-anchor="middle" dominant-baseline="central"><%= n.n %></text>
+  <% end %>
+</svg>

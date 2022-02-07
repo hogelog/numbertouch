@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "numbertouch"
+
+Numbertouch::CLI.new(ARGV).run
