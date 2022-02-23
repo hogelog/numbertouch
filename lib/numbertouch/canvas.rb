@@ -15,8 +15,10 @@ module Numbertouch
       @width = paper_size[0]
       @height = paper_size[1]
 
-      sized_numbers = number_data.map{|size, count| [size]*count }.flatten.shuffle.map.with_index(1).to_a.shuffle
+      sizes = number_data.map{|size, count| [size]*count }.flatten.sort
+      sized_numbers = sizes.zip((1..sizes.size).to_a.shuffle)
       @numbers = build(A4[0], A4[1], [], sized_numbers, margin: margin)
+      abort "Cannot build image" unless @numbers
     end
 
     TRY_COUNT = 10
