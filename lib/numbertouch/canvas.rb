@@ -3,21 +3,16 @@ require "erb"
 module Numbertouch
   class Canvas
 
-    A4 = [3508, 2480]
+    attr_reader :paper_size, :width, :height, :numbers
 
-    NUMBER_DATA_30 = {200 => 10, 300 => 15, 400 => 5}
-    DEFAULT_MARGIN = 50
+    def initialize(option)
+      @paper_size = option.paper_size
+      @width = option.paper_size[0]
+      @height = option.paper_size[1]
 
-    attr_reader :paper_size,:width, :height, :numbers
-
-    def initialize(paper_size: A4, number_data: NUMBER_DATA_30, margin: DEFAULT_MARGIN)
-      @paper_size = paper_size
-      @width = paper_size[0]
-      @height = paper_size[1]
-
-      sizes = number_data.map{|size, count| [size]*count }.flatten.sort
+      sizes = option.number_data.map{|size, count| [size]*count }.flatten.sort
       sized_numbers = sizes.zip((1..sizes.size).to_a.shuffle)
-      @numbers = build(A4[0], A4[1], [], sized_numbers, margin: margin)
+      @numbers = build(width, height, [], sized_numbers, margin: option.margin)
       abort "Cannot build image" unless @numbers
     end
 
