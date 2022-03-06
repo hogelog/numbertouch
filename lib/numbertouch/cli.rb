@@ -22,6 +22,7 @@ module Numbertouch
       parser.on("-n", "--number-data NUMBER_DATA", "Number object data: comma separated NxN format string like '200x10,300x15,400x5'") { set_number_data!(_1) }
       parser.on("-m", "--margin MARGIN", "Number object margin") { @option.margin = _1.to_i }
       parser.on("-s", "--preset PRESET", "Preset dataset: A4_30, A4_50") { set_preset_dataset!(_1) }
+      parser.banner = "Usage: #{ parser.program_name } [options] [output.svg]"
       parser.parse!(argv)
       @path = argv.first
     end

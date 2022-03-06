@@ -48,7 +48,11 @@ module Numbertouch
     end
 
     def save(path)
-      File.write(path, render)
+      if path
+        File.write(path, render)
+      else
+        puts render
+      end
     end
   end
 end
